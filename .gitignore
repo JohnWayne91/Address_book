@@ -1,0 +1,9 @@
+.idea/
+/__pycache__/
+*/__pycache__/
+address_book/__pycache__/settings.cpython-39.pyc
+address_book/__pycache__/__init__.cpython-39.pyc
+*/address_book/__pycache__/
+
+
+
