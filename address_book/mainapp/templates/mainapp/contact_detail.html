@@ -2,22 +2,34 @@
 {% block content %}
 
 <div class="list">
+            {% if contact.photo %}
         <div class="col-md-8">
             <div class="col-md-3">
             <img class="img-thumbnail" src="{{ contact.photo.url }}">
         </div>
-            <h3>Full name: {{ contact.first_name }} {{ contact.last_name }}</h3>
-            <p>Phone number: {{ contact.phone_number }} <button class="btn btn btn-primary">Edit</button> </p>
+            {% endif %}
+
+            <h3><strong>Full name:</strong> {{ contact.first_name }} {{ contact.last_name }}</h3>
+            <p><strong>Phone number:</strong> {{ contact.phone_number }} <button class="btn btn btn-primary">Edit</button> </p>
 
             {% if contact.url %}
-            <p>URL: <a href="{{ contact.url }}">{{ contact.url }}  </a><button class="btn btn btn-primary">Edit</button></p>
+            <p><strong>URL:</strong> <a href="{{ contact.url }}">{{ contact.url }}  </a><button class="btn btn btn-primary " >Edit</button></p>
             {% endif %}
 
-            {% if contact.address %}
-            <p>Country: {{ contact.address.country }} <button class="btn btn btn-primary">Edit</button></p>
-            <p>City: {{ contact.address.city }} <button class="btn btn btn-primary">Edit</button></p>
-            <p>Street: {{ contact.address.street }} <button class="btn btn btn-primary">Edit</button></p>
-            {% endif %}
+
+            <p><strong>Country:</strong> {{ contact.country }} <button class="btn btn btn-primary" >Edit</button></p>
+            <p><strong>City:</strong> {{ contact.city }} <button class="btn btn btn-primary">Edit</button></p>
+            <p><strong>Street:</strong> {{ contact.street }} <button class="btn btn btn-primary">Edit</button></p>
+
+            <form method="POST" action="{% url 'delete_contact' contact.pk %}">
+            {% csrf_token %}
+            <button class="btn btn btn-danger" type="submit" value="DELETE" onclick="return confirm('Are you sure do you want to delete {{contact.first_name}} {{contact.last_name}}?')">
+                <i class="fa fa-trash-o"></i>
+                Delete</button>
+            </form>
+
+
+
 
             <hr>
         </div>
