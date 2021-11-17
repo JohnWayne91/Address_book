@@ -1,6 +1,5 @@
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, DeleteView
-from django.http import HttpResponseRedirect
+from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 
 from .models import Contact
 from .forms import AddContactForm
@@ -30,6 +29,13 @@ class AddContactView(CreateView):
 
 class DeleteContact(DeleteView):
     model = Contact
+    success_url = reverse_lazy('base')
+
+
+class ContactUpdateView(UpdateView):
+    model = Contact
+    fields = '__all__'
+    template_name = 'mainapp/contact_update_form.html'
     success_url = reverse_lazy('base')
 
 
