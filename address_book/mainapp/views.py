@@ -1,6 +1,9 @@
-from django.views.generic import ListView, DetailView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, DeleteView
+from django.http import HttpResponseRedirect
 
-from .models import Contact, Address
+from .models import Contact
+from .forms import AddContactForm
 
 
 class ContactListView(ListView):
@@ -17,4 +20,17 @@ class ContactDetailView(DetailView):
     template_name = 'mainapp/contact_detail.html'
     context_object_name = 'contact'
     slug_url_kwarg = 'slug'
+
+
+class AddContactView(CreateView):
+    form_class = AddContactForm
+    template_name = 'mainapp/add_contact.html'
+    success_url = reverse_lazy('base')
+
+
+class DeleteContact(DeleteView):
+    model = Contact
+    success_url = reverse_lazy('base')
+
+
 
