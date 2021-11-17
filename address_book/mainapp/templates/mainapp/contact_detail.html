@@ -1,0 +1,26 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+
+<div class="list">
+        <div class="col-md-8">
+            <div class="col-md-3">
+            <img class="img-thumbnail" src="{{ contact.photo.url }}">
+        </div>
+            <h3>Full name: {{ contact.first_name }} {{ contact.last_name }}</h3>
+            <p>Phone number: {{ contact.phone_number }} <button class="btn btn btn-primary">Edit</button> </p>
+
+            {% if contact.url %}
+            <p>URL: <a href="{{ contact.url }}">{{ contact.url }}  </a><button class="btn btn btn-primary">Edit</button></p>
+            {% endif %}
+
+            {% if contact.address %}
+            <p>Country: {{ contact.address.country }} <button class="btn btn btn-primary">Edit</button></p>
+            <p>City: {{ contact.address.city }} <button class="btn btn btn-primary">Edit</button></p>
+            <p>Street: {{ contact.address.street }} <button class="btn btn btn-primary">Edit</button></p>
+            {% endif %}
+
+            <hr>
+        </div>
+</div>
+
+{% endblock content %}
