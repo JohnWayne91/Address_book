@@ -11,7 +11,6 @@ class Contact(models.Model):
     country = models.CharField(blank=True, max_length=100)
     city = models.CharField(blank=True, max_length=100)
     street = models.CharField(blank=True, max_length=300)
-    slug = models.SlugField(unique=True)
 
     class Meta:
         constraints = [
@@ -19,7 +18,7 @@ class Contact(models.Model):
         ]
 
     def get_absolute_url(self):
-        return reverse('contact_detail', kwargs={'slug': self.slug})
+        return reverse('contact_detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
