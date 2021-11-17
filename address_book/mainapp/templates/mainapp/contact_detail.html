@@ -10,16 +10,16 @@
             {% endif %}
 
             <h3><strong>Full name:</strong> {{ contact.first_name }} {{ contact.last_name }}</h3>
-            <p><strong>Phone number:</strong> {{ contact.phone_number }} <button class="btn btn btn-primary">Edit</button> </p>
+            <p><strong>Phone number:</strong> {{ contact.phone_number }}</p>
 
             {% if contact.url %}
-            <p><strong>URL:</strong> <a href="{{ contact.url }}">{{ contact.url }}  </a><button class="btn btn btn-primary " >Edit</button></p>
+            <p><strong>URL:</strong> <a href="{{ contact.url }}">{{ contact.url }}</a></p>
             {% endif %}
 
 
-            <p><strong>Country:</strong> {{ contact.country }} <button class="btn btn btn-primary" >Edit</button></p>
-            <p><strong>City:</strong> {{ contact.city }} <button class="btn btn btn-primary">Edit</button></p>
-            <p><strong>Street:</strong> {{ contact.street }} <button class="btn btn btn-primary">Edit</button></p>
+            <p><strong>Country:</strong> {{ contact.country }} </p>
+            <p><strong>City:</strong> {{ contact.city }} </p>
+            <p><strong>Street:</strong> {{ contact.street }}</p>
 
             <form method="POST" action="{% url 'delete_contact' contact.pk %}">
             {% csrf_token %}
@@ -27,10 +27,7 @@
                 <i class="fa fa-trash-o"></i>
                 Delete</button>
             </form>
-
-
-
-
+            <a href="{% url 'update_contact' contact.pk %}"><button class="btn btn btn-primary">Edit</button> </p></a>
             <hr>
         </div>
 </div>
