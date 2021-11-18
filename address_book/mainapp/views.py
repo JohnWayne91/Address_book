@@ -11,6 +11,11 @@ class ContactListView(ListView):
     template_name = 'mainapp/base.html'
     context_object_name = 'contacts'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Address book'
+        return context
+
     def get_queryset(self):
         return Contact.objects.all().order_by('first_name', 'last_name')
 
@@ -19,13 +24,22 @@ class ContactDetailView(DetailView):
     model = Contact
     template_name = 'mainapp/contact_detail.html'
     context_object_name = 'contact'
-    slug_url_kwarg = 'slug'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Contact detail'
+        return context
 
 
 class AddContactView(CreateView):
     form_class = AddContactForm
     template_name = 'mainapp/add_contact.html'
     success_url = reverse_lazy('base')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Add contact'
+        return context
 
 
 class DeleteContact(DeleteView):
@@ -39,10 +53,20 @@ class ContactUpdateView(UpdateView):
     template_name = 'mainapp/contact_update_form.html'
     success_url = reverse_lazy('base')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Edit contact'
+        return context
+
 
 class SearchResultsView(ListView):
     model = Contact
     template_name = 'mainapp/search_results.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Search result'
+        return context
 
     def get_queryset(self):
         query = self.request.GET.get('q')
