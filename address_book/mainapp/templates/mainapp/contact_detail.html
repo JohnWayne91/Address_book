@@ -4,9 +4,9 @@
 <div class="list">
             {% if contact.photo %}
         <div class="col-md-8">
-            <div class="col-md-3">
-            <img class="img-thumbnail" src="{{ contact.photo.url }}">
-        </div>
+            <div class="col-md-5">
+                <img class="img-thumbnail" src="{{ contact.photo.url }}">
+            </div>
             {% endif %}
 
             <h3><strong>Full name:</strong> {{ contact.first_name }} {{ contact.last_name }}</h3>
@@ -21,13 +21,15 @@
             <p><strong>City:</strong> {{ contact.city }} </p>
             <p><strong>Street:</strong> {{ contact.street }}</p>
 
+            <a href="{% url 'update_contact' contact.pk %}"><button class="btn btn btn-primary">Edit contact</button> </p></a>
+
             <form method="POST" action="{% url 'delete_contact' contact.pk %}">
             {% csrf_token %}
             <button class="btn btn btn-danger" type="submit" value="DELETE" onclick="return confirm('Are you sure do you want to delete {{contact.first_name}} {{contact.last_name}}?')">
                 <i class="fa fa-trash-o"></i>
                 Delete</button>
             </form>
-            <a href="{% url 'update_contact' contact.pk %}"><button class="btn btn btn-primary">Edit</button> </p></a>
+
             <hr>
         </div>
 </div>
