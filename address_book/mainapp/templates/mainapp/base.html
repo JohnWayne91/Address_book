@@ -37,6 +37,11 @@
                 <li>
                     <a class="nav-link text-light" href="{% url 'add_contact' %}">Add contact</a>
                 </li>
+                <li>
+                    <form action="{% url 'search_results' %}" method="get">
+                         <input name="q" type="text" placeholder="Search...">
+                    </form>
+                </li>
             </ul>
         </div>
     </div>
