@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 
@@ -38,5 +39,20 @@ class ContactUpdateView(UpdateView):
     template_name = 'mainapp/contact_update_form.html'
     success_url = reverse_lazy('base')
 
+
+class SearchResultsView(ListView):
+    model = Contact
+    template_name = 'mainapp/search_results.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = Contact.objects.filter(
+            Q(first_name__icontains=query) |
+            Q(last_name__icontains=query) |
+            Q(country__icontains=query) |
+            Q(phone_number__icontains=query) |
+            Q(city__icontains=query)
+        )
+        return object_list
 
 
