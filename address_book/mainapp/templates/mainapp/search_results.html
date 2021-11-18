@@ -1,0 +1,14 @@
+{% extends 'mainapp/base.html' %}
+{% block content %}
+<h1 style="padding-left:60px">Search Results:</h1>
+
+<ul>
+  {% for contact in object_list %}
+    <li class="list-group-item">
+      <p class="h3">{{ contact.first_name }} {{ contact.last_name }} {{ contact.phone_number }}</p>
+      <a href="{{ contact.get_absolute_url }}"><button class="btn btn btn-primary">Additional info</button></a>
+    </li>
+  {% endfor %}
+</ul>
+
+{% endblock %}
