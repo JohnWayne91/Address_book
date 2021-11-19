@@ -1,4 +1,4 @@
-from rest_framework.generics import ListAPIView, RetrieveAPIView, RetrieveUpdateAPIView, CreateAPIView
+from rest_framework.generics import ListAPIView, RetrieveUpdateAPIView, CreateAPIView
 from rest_framework.filters import SearchFilter
 
 from .serializers import ContactSerializer
@@ -12,7 +12,7 @@ class ContactListApiView(ListAPIView):
     search_fields = ['first_name', 'last_name', 'phone_number', 'country', 'city']
 
 
-class ContactDetailApiView(RetrieveAPIView, RetrieveUpdateAPIView):
+class ContactDetailApiView(RetrieveUpdateAPIView):
     serializer_class = ContactSerializer
     queryset = Contact.objects.all()
     lookup_field = 'pk'
